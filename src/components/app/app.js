@@ -48,18 +48,16 @@ export default class App extends Component {
 
                     {/*<PeoplePage/>*/}
 
-                    <PersonList>
-                        {({name}) => <span>{name}</span>}
-                    </PersonList>
-                    <PlanetList>
-                        {({name}) => <span>{name}</span>}
-                    </PlanetList>
-                    <StarshipList>
-                        {({name}) => <span>{name}</span>}
-                    </StarshipList>
+                    <PersonList/>
+
+                    <PlanetList/>
+
+                    <StarshipList/>
 
                     <PersonDetails itemId={11}/>
+
                     <PlanetDetails itemId={9}/>
+
                     <StarshipDetails itemId={10}/>
 
                 </div>
