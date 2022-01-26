@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 
+import SwapiService from "../../services/swapi-service";
+import {SwapiServiceProvider} from "../swapi-service-context";
+
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import PeoplePage from "../people-page";
@@ -11,6 +14,8 @@ import ErrorBoundary from "../error-boundary";
 import './app.css';
 
 export default class App extends Component {
+
+    swapiService = new SwapiService();
 
     state = {
         showRandomPlanet: true,
@@ -34,11 +39,12 @@ export default class App extends Component {
 
         return (
             <ErrorBoundary>
-                <div className='app'>
-                    <Header />
-                    {/*{planet}*/}
+                <SwapiServiceProvider value={this.swapiService}>
+                    <div className='app'>
+                        <Header />
+                        {/*{planet}*/}
 
-                     {/*<div className='row-mb-2 button-row'>
+                        {/*<div className='row-mb-2 button-row'>
                         <button className='toggle-planet btn btn-warning btn-lg'
                                 onClick={this.toggleRandomPlanet}>
                             Toggle Random Planet
@@ -46,21 +52,22 @@ export default class App extends Component {
                         <ErrorButton/>
                      </div>*/}
 
-                    {/*<PeoplePage/>*/}
+                        {/*<PeoplePage/>*/}
 
-                    <PersonList/>
+                        <PersonList/>
 
-                    <PlanetList/>
+                        <PlanetList/>
 
-                    <StarshipList/>
+                        <StarshipList/>
 
-                    <PersonDetails itemId={11}/>
+                        <PersonDetails itemId={11}/>
 
-                    <PlanetDetails itemId={9}/>
+                        <PlanetDetails itemId={9}/>
 
-                    <StarshipDetails itemId={10}/>
+                        <StarshipDetails itemId={10}/>
 
-                </div>
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundary>
         );
     };
