@@ -15,11 +15,11 @@ const PlanetDetails = (props) => {
     );
 };
 
-const mapMethoddsToProps = (swapiService) => {
+const mapMethodsToProps = (swapiService) => {
     return {
         getData: swapiService.getPlanet,
         getImageUrl: swapiService.getPlanetImage
     };
 };
 
-export default withSwapiService(PlanetDetails, mapMethoddsToProps);
+export default withSwapiService(mapMethodsToProps)(PlanetDetails);

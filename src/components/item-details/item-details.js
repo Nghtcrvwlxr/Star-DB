@@ -82,7 +82,7 @@ export default class ItemDetails extends Component {
         return (
             <div className="person-details card">
                 <img className="person-image"
-                     src={image} alt='person'/>
+                     src={image} alt=''/>
 
                 <div className="card-body">
                     <h4>{name}</h4>

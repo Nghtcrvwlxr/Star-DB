@@ -15,11 +15,11 @@ const StarshipDetails = (props) => {
     );
 };
 
-const mapMethoddsToProps = (swapiService) => {
+const mapMethodsToProps = (swapiService) => {
     return {
         getData: swapiService.getStarship,
         getImageUrl: swapiService.getStarshipImage
     };
 };
 
-export default withSwapiService(StarshipDetails, mapMethoddsToProps);
+export default withSwapiService(mapMethodsToProps)(StarshipDetails);
