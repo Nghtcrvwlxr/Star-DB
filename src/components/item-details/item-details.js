@@ -71,7 +71,7 @@ export default class ItemDetails extends Component {
         if (!this.state.item) {
             return (
                 <div className="person-details card">
-                    <span>Select a person from the list</span>
+                    <span>Select an item from the list</span>
                 </div>
             );
         }

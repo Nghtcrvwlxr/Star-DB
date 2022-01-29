@@ -10,6 +10,7 @@ import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorButton from "../error-button";
 import {PeoplePage, PlanetsPage, StarshipsPage} from "../pages";
+import {StarshipDetails} from "../sw-components";
 import ErrorBoundary from "../error-boundary";
 
 import './app.css';
@@ -66,11 +67,21 @@ export default class App extends Component {
                                 </div>
                             </ErrorBoundary>
 
+                            <Route path='/' render={() => <h2>Welcome to Star DB</h2>} exact/>
+
+                            <Route path='/people' render={() => <h2>People</h2>} exact/>
                             <Route path='/people' component={PeoplePage}/>
 
+                            <Route path='/planets' render={() => <h2>Planets</h2>} exact/>
                             <Route path='/planets' component={PlanetsPage}/>
 
-                            <Route path='/starships' component={StarshipsPage}/>
+                            <Route path='/starships' exact render={() => <h2>Starships</h2>}/>
+                            <Route path='/starships' exact component={StarshipsPage}/>
+                            <Route path='/starships/:id'
+                                   render={({match}) => {
+                                       const {id} = match.params;
+                                       return <StarshipDetails itemId={id}/>
+                                   }}/>
 
                         </div>
                     </Router>
