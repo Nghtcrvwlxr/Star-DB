@@ -4,6 +4,8 @@ import SwapiService from "../../services/swapi-service";
 import TestService from "../../services/test-service";
 import {SwapiServiceProvider} from "../swapi-service-context";
 
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorButton from "../error-button";
@@ -48,33 +50,30 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiService}>
-                    <div className='app'>
-                        <Header onServiceChange={this.onServiceChange}/>
+                    <Router>
+                        <div className='app'>
+                            <Header onServiceChange={this.onServiceChange}/>
 
-                        <ErrorBoundary>
-                            {planet}
+                            <ErrorBoundary>
+                                {planet}
 
-                            <div className='row-mb-2 button-row'>
-                                <button className='toggle-planet btn btn-warning btn-lg'
-                                        onClick={this.toggleRandomPlanet}>
-                                    Toggle Random Planet
-                                </button>
-                                <ErrorButton/>
-                            </div>
-                        </ErrorBoundary>
+                                <div className='row-mb-2 button-row'>
+                                    <button className='toggle-planet btn btn-warning btn-lg'
+                                            onClick={this.toggleRandomPlanet}>
+                                        Toggle Random Planet
+                                    </button>
+                                    <ErrorButton/>
+                                </div>
+                            </ErrorBoundary>
 
-                        <ErrorBoundary>
-                            <PeoplePage/>
-                        </ErrorBoundary>
+                            <Route path='/people' component={PeoplePage}/>
 
-                        <ErrorBoundary>
-                            <PlanetsPage/>
-                        </ErrorBoundary>
+                            <Route path='/planets' component={PlanetsPage}/>
 
-                        <ErrorBoundary>
-                            <StarshipsPage/>
-                        </ErrorBoundary>
-                    </div>
+                            <Route path='/starships' component={StarshipsPage}/>
+
+                        </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundary>
         );
