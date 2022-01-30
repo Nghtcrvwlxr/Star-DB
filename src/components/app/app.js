@@ -4,7 +4,7 @@ import SwapiService from "../../services/swapi-service";
 import TestService from "../../services/test-service";
 import {SwapiServiceProvider} from "../swapi-service-context";
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
@@ -75,27 +75,30 @@ export default class App extends Component {
                                 </div>
                             </ErrorBoundary>
 
-                            <Route path='/' render={() => <h2>Welcome to Star DB</h2>} exact/>
+                            <ErrorBoundary>
+                                <Switch>
+                                    <Route path='/' render={() => <h2>Welcome to Star DB</h2>} exact/>
 
-                            <Route path='/people' exact render={() => <h2>People</h2>}/>
-                            <Route path='/people/:id?' component={PeoplePage}/>
+                                    <Route path='/people/:id?' component={PeoplePage}/>
 
-                            <Route path='/planets' exact render={() => <h2>Planets</h2>}/>
-                            <Route path='/planets' component={PlanetsPage}/>
+                                    <Route path='/planets' component={PlanetsPage}/>
 
-                            <Route path='/starships' exact render={() => <h2>Starships</h2>}/>
-                            <Route path='/starships' exact component={StarshipsPage}/>
-                            <Route path='/starships/:id'
-                                   render={({match}) => {
-                                       const {id} = match.params;
-                                       return <StarshipDetails itemId={id}/>
-                                   }}/>
+                                    <Route path='/starships' exact component={StarshipsPage}/>
+                                    <Route path='/starships/:id'
+                                           render={({match}) => {
+                                               const {id} = match.params;
+                                               return <StarshipDetails itemId={id}/>
+                                           }}/>
 
-                            <Route path='/login'
-                                   render={() => (<LoginPage isLoggedIn={this.state.isLoggedIn}
-                                                             onLogin={this.onLogin}/>)}/>
-                            <Route path='/secret'
-                                   render={() => (<SecretPage isLoggedIn={this.state.isLoggedIn}/>)}/>
+                                    <Route path='/login'
+                                           render={() => (<LoginPage isLoggedIn={this.state.isLoggedIn}
+                                                                     onLogin={this.onLogin}/>)}/>
+                                    <Route path='/secret'
+                                           render={() => (<SecretPage isLoggedIn={this.state.isLoggedIn}/>)}/>
+                                    
+                                    <Route render={() => <h2>Page is not found</h2>}/>
+                                </Switch>
+                            </ErrorBoundary>
                         </div>
                     </Router>
                 </SwapiServiceProvider>
