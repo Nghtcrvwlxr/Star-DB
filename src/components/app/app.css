@@ -14,3 +14,19 @@
 h2 {
     margin-top: 1rem;
 }
+
+.login-page {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #444;
+    border-radius: 0.25rem;
+    background: #303030;
+}
+
+.secret-page {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #444;
+    border-radius: 0.25rem;
+    background: #303030;
+}
